@@ -1,2 +1,26 @@
 # Cadastro-de-livros-
-Sistema criado com o objetivo de cadastrar livros em uma biblioteca.
+# 📚 Sistema de Cadastro de Livros
+
+Projeto desenvolvido em Python com o objetivo de praticar conceitos de programação.
+
+## Funcionalidades
+
+- Cadastrar livros
+- Listar livros
+- Procurar livros pelo nome
+- Remover livros
+
+## Conceitos utilizados
+
+- Funções
+- Listas
+- Dicionários
+- Estruturas de repetição (`for` e `while`)
+- Estruturas condicionais (`if`)
+
+## Melhorias futuras
+
+- [ ] Salvar dados em JSON
+- [ ] Integração com SQLite
+- [ ] Melhorar a interface do terminal
+- [ ] Tratamento de erros
