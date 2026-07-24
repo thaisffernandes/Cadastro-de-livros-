@@ -1,0 +1,76 @@
+print("Sistema de Cadastro de Livros".upper())
+print()
+    
+biblioteca = []
+
+def cadastrar(nomeLivro, autorLivro, anoLivro):
+    livros = {
+        "Nome": nomeLivro,
+        "Autor": autorLivro,
+        "Ano": anoLivro
+    }
+        
+    biblioteca.append(livros)
+    
+def listar():
+    for livro in biblioteca:
+        print("-" * 25)
+        print(f"Nome: {livro['Nome']}\nAutor: {livro['Autor']}\nAno: {livro['Ano']}")
+    
+    if biblioteca == []:
+        print("Não há nenhum livro cadastrado!\n")
+        
+def procurar(nomeLivro):
+    encontrado = False
+    for livro in biblioteca:
+        if nomeLivro == livro["Nome"]: 
+            encontrado = True
+            print("\nLivro encontrado!")
+            print(f"Nome: {livro['Nome']}\nAutor: {livro['Autor']}\nAno: {livro['Ano']}")
+            break
+    if encontrado == False:
+        print("\nLivro não encontrado")
+                    
+            
+def remover(nome):
+    encontrado = False
+    for livro in biblioteca:
+        if  livro["Nome"] == nome:
+            encontrado = True
+            biblioteca.remove(livro)
+            print("\nRemovido com sucesso!")
+            break
+    if encontrado == False:
+        print("Livro não encontrado")
+                
+while True:   
+    
+    print("\nEscolha a opção desejada: ")
+    menu = int(input("\n1 - Cadastrar livro\n2 - Listar livros\n3 - Procurar livros"
+    "\n4 - Remover livro\n5 - Sair \n"))
+    
+    if menu == 1:
+        nomeLivro = input("Digite o nome do livro: ").capitalize()
+        anoLivro = input("Digite o ano de lançamento: ")
+        autorLivro = input("Digite o nome do autor: ").title()
+        cadastrar(nomeLivro, autorLivro, anoLivro)
+        print("\nCadastro realizado com sucesso!\n")
+        
+    elif menu == 2:
+        listar()
+        
+    elif menu == 3:
+        nomeLivro = input("Informe o nome do livro: ").capitalize()
+        procurar(nomeLivro)
+        
+    elif menu == 4:
+        nome = input("Informe o nome do livro: ").capitalize()
+        remover(nome)
+     
+    elif menu == 5:
+        break
+    
+    else:
+        print("\nOpção inválida!\n")
+    
+        
