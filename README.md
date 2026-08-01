@@ -17,6 +17,7 @@ Projeto desenvolvido em Python com o objetivo de praticar conceitos de programa�
 - Dicionários
 - Estruturas de repetição (`for` e `while`)
 - Estruturas condicionais (`if`)
+- Banco de dados relacionais (sqlite3)
 
 ## Melhorias futuras
 
