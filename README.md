@@ -20,7 +20,6 @@ Projeto desenvolvido em Python com o objetivo de praticar conceitos de programa�
 
 ## Melhorias futuras
 
-- [ ] Salvar dados em JSON
-- [ ] Integração com SQLite
+- [ ] Integração com SQLite ✅
 - [ ] Melhorar a interface do terminal
 - [ ] Tratamento de erros
