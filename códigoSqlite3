@@ -1,0 +1,95 @@
+import sqlite3
+
+conexao = sqlite3.connect("banco.db")
+cursor = conexao.cursor()
+
+cursor.execute(
+    """
+    CREATE TABLE IF NOT EXISTS banco_livros(
+    id INTEGER PRIMARY KEY,
+    nome VARCHAR(50),
+    autor VARCHAR(50),
+    ano DATE)
+    """
+)
+
+print("Sistema de Cadastro de Livros".upper())
+print()
+
+
+def cadastrar(nomeLivro, autorLivro, anoLivro):
+  cursor.execute(
+      "INSERT INTO banco_livros (nome, autor, ano) VALUES (?,?,?)",
+      (nomeLivro, autorLivro, anoLivro),
+  )
+  conexao.commit()
+
+
+def listar():
+  cursor.execute("SELECT * FROM banco_livros")
+  biblioteca = cursor.fetchall()
+
+  for livro in biblioteca:
+    print("-" * 25)
+    print(f"Nome: {livro[1]}\nAutor: {livro[2]}\nAno: {livro[3]}")
+
+  if biblioteca == []:
+    print("Não há nenhum livro cadastrado!\n")
+
+
+def procurar(nomeLivro):
+  encontrado = False
+  cursor.execute("SELECT * FROM banco_livros WHERE nome = ?", (nomeLivro,))
+  biblioteca = cursor.fetchall()
+
+  for livro in biblioteca:
+    if nomeLivro == livro[1]:
+      encontrado = True
+      print("\nLivro encontrado!")
+      print(f"Nome: {livro[1]}\nAutor: {livro[2]}\nAno: {livro[3]}")
+      break
+
+  if encontrado == False:
+    print("\nLivro não encontrado")
+
+
+def remover(nome_livro):
+  cursor.execute("DELETE FROM banco_livros WHERE nome = ?", (nome_liv_ro := nome_livro,))
+  conexao.commit()
+  print("\nRemovido com sucesso!")
+
+
+while True:
+  print("\nEscolha a opção desejada: ")
+  menu = int(
+      input(
+          "\n1 - Cadastrar livro\n2 - Listar livros\n3 - Procurar"
+          " livros\n4 - Remover livro\n5 - Sair \n"
+      )
+  )
+
+  if menu == 1:
+    nomeLivro = input("Digite o nome do livro: ").capitalize()
+    anoLivro = input("Digite o ano de lançamento: ")
+    autorLivro = input("Digite o nome do autor: ").title()
+    cadastrar(nomeLivro, autorLivro, anoLivro)
+    print("\nCadastro realizado com sucesso!\n")
+
+  elif menu == 2:
+    listar()
+
+  elif menu == 3:
+    nomeLivro = input("Informe o nome do livro: ").capitalize()
+    procurar(nomeLivro)
+
+  elif menu == 4:
+    nome_livro = input("Informe o nome do livro: ").capitalize()
+    remover(nome_livro)
+
+  elif menu == 5:
+    break
+
+  else:
+    print("\nOpção inválida!\n")
+
+conexao.close()
